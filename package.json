@@ -1,0 +1,26 @@
+{
+  "name": "phantom_components",
+  "version": "0.0.8",
+  "description": "custom components for vr pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vr",
+    "phantom",
+    "react-vr",
+    "component",
+    "library"
+  ],
+  "dependencies": {
+    "ovrui": "~2.0.0",
+    "react": "16.0.0",
+    "react-native": "~0.48.0",
+    "react-vr": "~2.0.0",
+    "react-vr-web": "~2.0.0",
+    "three": "^0.87.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
