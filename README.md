@@ -94,3 +94,6 @@ This button is particular to VR, wherein the user simply gazes at the button for
 - `buttonStyle`: Merges with the default styling for the button.
 - `progressDisabled`: Whether you want the progress bar to be disabled. By default disabling is determined based on whether the link corresponds to the page you are currently on (similar to the `NavLink` component in the `react-router-dom`).
 - `progressColor`: The color of the progress bar on hover.
+- `onHover`: Callback that will be invoked when the user hovers over the button.
+- `onTrigger`: Callback that will be invoked when the user gazes at the button until the timeout finishes.
+- `onLeave`: Callback that will be invoked when the user stops hovering over the button.
