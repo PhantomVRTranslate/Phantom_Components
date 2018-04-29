@@ -6,7 +6,7 @@ Currently, there is a gap in the VR world between VR content and already existin
 
 This module will hopefully give developers a few extra tools they need to get started with React VR without worrying about the formatting.
 
-## Current list of components:
+## Current list of components (still in development):
 ### `Title`
 Renders a fading in title for your site, along with a start button to enter your site. Refer to our demo site in order to use this properly. This component takes the following props:
 - `title`: Changes title of site.

@@ -2,11 +2,9 @@ import React from "react";
 import { View, Text, VrButton } from "react-vr";
 
 import CarouselItem from "./CarouselItem";
-import GazeButton from "../button/GazeButton";
-import { IMAGE, TEXT } from "./cardTypes";
 import CardContainer from "../cards/CardContainer";
 
-class CardCarousel extends React.Component {
+export default class Carousel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -15,7 +13,7 @@ class CardCarousel extends React.Component {
       textSlices: [],
       currentTextSliceIndex: 0,
       currentTextSlice: '',
-      cardType: this.props.cardType,
+      type: this.props.type,
       largeText: false,
       maxTextSize: this.props.maxTextSize || this.props.flex > 1 ? 200 : 120
     };
@@ -30,9 +28,9 @@ class CardCarousel extends React.Component {
   componentDidMount() {
     this.textSet();
     if (
-      this.props.cardType === IMAGE &&
-      this.props.itemCollection &&
-      this.props.itemCollection.length > 1
+      this.props.type === "image" &&
+      this.props.imageCollection &&
+      this.props.imageCollection.length > 1
     ) {
       this.setState({ largeText: true });
     }
@@ -105,7 +103,7 @@ class CardCarousel extends React.Component {
   nextCard() {
     const nextCardNum = this.state.cardNumber + 1;
 
-    if (nextCardNum > this.props.itemCollection.length - 1) {
+    if (nextCardNum > this.props.imageCollection.length - 1) {
       this.setState({
         cardNumber: 0
       });
@@ -121,7 +119,7 @@ class CardCarousel extends React.Component {
 
     if (prevCardNum < 0) {
       this.setState({
-        cardNumber: this.props.itemCollection.length - 1
+        cardNumber: this.props.imageCollection.length - 1
       });
     } else {
       this.setState({
@@ -131,9 +129,9 @@ class CardCarousel extends React.Component {
   }
 
   render() {
-    const { itemCollection } = this.props;
-    if (itemCollection) {
-      const canNext = this.state.cardNumber < itemCollection.length;
+    const { imageCollection } = this.props;
+    if (imageCollection) {
+      const canNext = this.state.cardNumber < imageCollection.length;
       const canPrev = this.state.cardNumber > 0;
     }
 
@@ -142,12 +140,12 @@ class CardCarousel extends React.Component {
         <View
           style={{
             width: "100%",
-            height: "100%"
+            height: "100%",
           }}
         >
           <CarouselItem
-            card={itemCollection ? itemCollection[this.state.cardNumber] : null}
-            cardType={this.state.cardType}
+            card={imageCollection ? imageCollection[this.state.cardNumber] : null}
+            type={this.props.type}
             flex={this.props.flex}
           >
             {this.state.currentTextSlice}
@@ -169,9 +167,8 @@ class CardCarousel extends React.Component {
                 left: 10,
                 bottom: 10
               }}
-                disabled={false}
                 onClick={
-                  this.state.cardType === IMAGE ? this.prevCard : this.prevSlice
+                  this.props.type === "image" ? this.prevCard : this.prevSlice
                 }
               >
                 <Text
@@ -187,9 +184,8 @@ class CardCarousel extends React.Component {
                 </Text>
               </VrButton>
               <VrButton
-                disabled={false}
                 onClick={
-                  this.state.cardType === IMAGE ? this.nextCard : this.nextSlice
+                  this.props.type === "image" ? this.nextCard : this.nextSlice
                 }
                 style={{
                   borderRadius: 40,
@@ -224,5 +220,3 @@ class CardCarousel extends React.Component {
     );
   }
 }
-
-export default CardCarousel;
