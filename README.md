@@ -17,6 +17,20 @@ Renders a fading in title for your site, along with a start button to enter your
 ### `Navbar`
 Provides a bottom-positioned navigation bar that is visible throughout the entire exploration of the site. Refer to our demo site in order to use this properly. The `Navbar` component takes the following props:
 - `content`: Currently, the only way to put links into the navbar is by creating a `content` object as follows:
+
+```javascript
+const content = [
+        [{label: 'Home', link: '/home'}],
+        [{label: 'About', link: '/about'}],
+        [{label: 'Gallery', link: '/gallery'}]
+    ]
+
+...
+
+<Navbar content={content} />
+```
+We will be making this easier in later versions.
+
 - `navbarStyle`: Merges with default styling of the `Navbar` component.
 - `linkStyle`: Merges with the default styling of the `NavbarItem` component.
 - `linkBgColor`: The background color of an unselected link.
