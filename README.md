@@ -14,8 +14,12 @@ Renders a fading in title for your site, along with a start button to enter your
 ### `Navbar`
 Provides a bottom-positioned navigation bar that is visible throughout the entire exploration of the site. Refer to our demo site in order to use this properly. The `Navbar` component takes the following props:
 - `content`: Currently, the only way to put links into the navbar is by creating a `content` object as follows:
-- `navbarStyle`: merges with default styling of the `Navbar` component.
-- `linkStyle`: merges with the default styling of the `NavbarItem` component.
+- `navbarStyle`: Merges with default styling of the `Navbar` component.
+- `linkStyle`: Merges with the default styling of the `NavbarItem` component.
+- `linkBgColor`: The background color of an unselected link.
+- `linkSelectedColor`: The background color of a selected link.
+- `progressDisabled`: Whether you want the progress bar to be disabled. By default disabling is determined based on whether the link corresponds to the page you are currently on (similar to the `NavLink` component in the `react-router-dom`).
+- `progressColor`: The color of the progress bar on hover.
 
 ### `ContentPlane`
 Wraps and centers the page (excluding the `Title` and `NavBar` components) in a spherical plane for better presentation. Looks best with a maximum of 5-6 component units.
@@ -56,3 +60,10 @@ This is a holder for multiple images or textblocks in the form of dynamically-cr
 - `type`: A string indicating the type of collection you want ('image' or 'text').
 - `imageCollection`: If of type 'image', the `imageCollection` prop will take an array of URLs associated with the images you want to display.
 - `maxTextLength`: The number of characters you want before the text wraps onto a new card.
+
+### `GazeButton`
+This button is particular to VR, wherein the user simply gazes at the button for a given period of time until it activates or 'clicks'. It takes the following props:
+- `timeout`: This corresponds to the amount of time (in milliseconds) that the user must gaze at the button before it activates. The default is set to 1000.
+- `buttonStyle`: Merges with the default styling for the button.
+- `progressDisabled`: Whether you want the progress bar to be disabled. By default disabling is determined based on whether the link corresponds to the page you are currently on (similar to the `NavLink` component in the `react-router-dom`).
+- `progressColor`: The color of the progress bar on hover.
