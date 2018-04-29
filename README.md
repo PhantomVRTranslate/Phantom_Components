@@ -44,6 +44,7 @@ The `ImageCard` and `VideoCard` components take the following additional prop:
 The same as `ImageCard`, but takes in the extra following prop:
 - `caption`: The caption you want to display. You can also just add the caption in between `ImageCaption` tags.
 - `alwaysShow`: A boolean value of whether you want the caption to always be visible (`true`) or only when you hover over the photo (`false`). The default is set to false.
+- `captionStyling`: Merges with the default styling for the caption.
 #### `Gallery`
 Similar to the various cards, except that multiple `GalleryItems` can be taken in and are dynamically arranged in rows and columns. The `Gallery` component takes in the following props:
 - `rows`: The number of rows in the gallery. The default is set to 2.
