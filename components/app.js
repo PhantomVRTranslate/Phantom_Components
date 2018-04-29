@@ -59,8 +59,7 @@ export default class App extends React.Component {
           content={navbarContent}
           changePage={this.changePage.bind(this)}
           page={this.state.page}
-          progressColor="#f00"
-          progressDisabled={true}
+          progressColor="#777"
           />
       </View>
     );

@@ -140,12 +140,15 @@ export default class Page1 extends React.Component {
         />
         {/* <VideoCard src={'../static_assets/videos/fireplace.mp4'}/> */}
         {/* <TextCard>Hello! It's a good day to be eating Christmsas</TextCard> */}
-        {/* <ImageCaption 
+        <ImageCaption 
           flex={1} 
-          src={'../static_assets/pictures/pup.jpg'} 
+          src={'https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg'} 
           caption="A puppy."
           alwaysShow={false}
-           /> */}
+          captionStyling={{
+            color: 'orange'
+          }}
+           /> 
 
         <Gallery>
           <GalleryItem

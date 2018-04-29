@@ -1,85 +1,87 @@
-import React from 'react';
-import {View, Image, VrButton, Text} from 'react-vr';
+import React from "react";
+import { View, Image, VrButton, Text } from "react-vr";
 import TextCard from "./TextCard.js";
 
-import CardContainer from './CardContainer';
+import CardContainer from "./CardContainer";
 
 // import ImageZoom from 'imageZoom';
 
-
 export default class ImageCaption extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            displayCaption: this.props.alwaysShow || false,
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayCaption: this.props.alwaysShow || false
+    };
 
-        console.log(this.state);
-        
+    console.log(this.state);
+  }
+
+  toggleCaption() {
+    this.setState({ displayCaption: !this.state.displayCaption });
+  }
+
+  render() {
+    let displayCaption;
+    if (!this.props.alwaysShow) {
+      displayCaption = this.state.displayCaption ? 1 : 0;
+    } else {
+      displayCaption = 1;
     }
 
-    //need to tailor, right now its not set but if you add borderWidth: 5 & borderColor: w/e it will detect when you are hovering over an image
-    //tried to work with tint color but its opacity variable changes the opacity of the entire fucking image. 
+    const toggleHandler = this.props.alwaysShow
+      ? () => {}
+      : this.toggleCaption.bind(this);
 
-    
-    toggleCaption(){
-        this.setState({displayCaption: !this.state.displayCaption});
-    }
+    const { flex, cardStyling, captionStyling } = this.props;
 
-    render () {
+    const defaultCaptionStyling = {
+      flex: 1,
+      minWidth: "100%",
+      minHeight: "100%",
+      fontSize: 50,
+      color: "#FFF",
+      fontWeight: "500",
+      textAlign: "center",
+      textAlignVertical: "center",
+      padding: "10"
+    };
 
-        let displayCaption;
-        if (!this.props.alwaysShow) {
-        displayCaption = this.state.displayCaption ? 1 : 0;
-        } else {
-            displayCaption = 1;
-        }
+    const mergedCaptionStyling = Object.assign(
+      {},
+      defaultCaptionStyling,
+      captionStyling
+    );
 
-        const toggleHandler = this.props.alwaysShow ? () => {} : this.toggleCaption.bind(this);
-
-        console.log(this.state, toggleHandler);
-
-        return (
-            <CardContainer flex={this.props.flex}>
-             <VrButton 
-             onEnter={toggleHandler} onExit={toggleHandler} 
-             style = {{
-                    width: '100%' , 
-                    height: '100%',
-                    }}>
-                    
-                    <Image 
-                        source = {{uri: this.props.src}}
-                        style = {{
-                            width: '100%', 
-                            height: '100%',
-                        }}
-                        
-                        />
-                <VrButton style = {{
-                    width: '100%' , 
-                    height: '100%',
-                    flex: 1,
-                    opacity: displayCaption,
-                    alignItems: 'center'
-                    }}>
-                    <Text style={{
-                        flex: 1, 
-                        minWidth: '100%', 
-                        minHeight: '100%',
-                        fontSize: 50,
-                        color: '#FFF',
-                        fontWeight: '500',
-                        textAlign: 'center',
-                        textAlignVertical: 'center',
-                        padding: '10',
-                        }}>
-                        {this.props.caption || this.props.children}
-                    </Text>  
-                </VrButton>          
-            </VrButton>
-            </CardContainer>
-               
-        );
-    }
+    return (
+      <CardContainer flex={flex} cardStyling={cardStyling}>
+        <VrButton
+          onEnter={toggleHandler}
+          onExit={toggleHandler}
+          style={{
+            width: "100%",
+            height: "100%"
+          }}
+        >
+          <Image
+            source={{ uri: this.props.src }}
+            style={{
+              width: "100%",
+              height: "100%"
+            }}
+          />
+          <VrButton
+            style={{
+              width: "100%",
+              height: "100%",
+              flex: 1,
+              opacity: displayCaption,
+              alignItems: "center"
+            }}
+          >
+            <Text style={mergedCaptionStyling}>{this.props.caption || this.props.children}</Text>
+          </VrButton>
+        </VrButton>
+      </CardContainer>
+    );
+  }
 }
