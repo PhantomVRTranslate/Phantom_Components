@@ -1,17 +1,17 @@
-import GazeButton from "./final_components/button/GazeButton";
-import CardContainer from "./final_components/cards/CardContainer";
-import ImageCaption from "./final_components/cards/ImageCaption";
-import ImageCard from "./final_components/cards/ImageCard";
-import TextCard from "./final_components/cards/TextCard";
-import VideoCard from "./final_components/cards/VideoCard";
-import Carousel from "./final_components/carousel/Carousel";
-import CarouselItem from "./final_components/carousel/CarouselItem";
-import Gallery from "./final_components/gallery/Gallery";
-import GalleryItem from "./final_components/gallery/GalleryItem";
-import Navbar from "./final_components/navbar/Navbar";
-import NavbarItem from "./final_components/navbar/NavbarItem";
-import Title from "./final_components/Title";
-import ContentPlane from "./final_components/ContentPlane";
+import GazeButton from "./components/button/GazeButton";
+import CardContainer from "./components/cards/CardContainer";
+import ImageCaption from "./components/cards/ImageCaption";
+import ImageCard from "./components/cards/ImageCard";
+import TextCard from "./components/cards/TextCard";
+import VideoCard from "./components/cards/VideoCard";
+import Carousel from "./components/carousel/Carousel";
+import CarouselItem from "./components/carousel/CarouselItem";
+import Gallery from "./components/gallery/Gallery";
+import GalleryItem from "./components/gallery/GalleryItem";
+import Navbar from "./components/navbar/Navbar";
+import NavbarItem from "./components/navbar/NavbarItem";
+import Title from "./components/Title";
+import ContentPlane from "./components/ContentPlane";
 
 export {
   GazeButton,

@@ -10,6 +10,9 @@ This module will hopefully give developers a few extra tools they need to get st
 ### `Title`
 Renders a fading in title for your site, along with a start button to enter your site. Refer to our demo site in order to use this properly. This component takes the following props:
 - `title`: Changes title of site.
+- `startText`: Changes start button text.
+- `titleStyling`: Merges with default styling of title.
+- `startTextStyling`: Merges with default styling of start button.
 
 ### `Navbar`
 Provides a bottom-positioned navigation bar that is visible throughout the entire exploration of the site. Refer to our demo site in order to use this properly. The `Navbar` component takes the following props:
