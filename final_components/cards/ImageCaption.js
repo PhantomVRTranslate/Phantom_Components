@@ -35,8 +35,10 @@ export default class ImageCaption extends React.Component {
 
         console.log(this.state, toggleHandler);
 
+        const { cardStyling } = this.props;
         return (
-            <CardContainer flex={this.props.flex}>
+            <CardContainer flex={this.props.flex || 1}
+                cardStyling={cardStyling}>
              <VrButton 
              onEnter={toggleHandler} onExit={toggleHandler} 
              style = {{

@@ -29,9 +29,11 @@ Wraps and centers the page (excluding the `Title` and `NavBar` components) in a 
 Three components for individual cards on the `ContentPlane`. They all take the following props:
 
 - `flex`: How many units you want the card to take up on the `ContentPlane`. The default is set to 1.
+- `cardStyling`: Merges with the default styling of the card.
 
 The `TextCard` component takes the following additional prop:
 - `text`: The text you want to display. You can also just add text in between `TextCard` tags.
+- `textStyling`: Merges with the default styling for text.
 
 The `ImageCard` and `VideoCard` components take the following additional prop:
 - `src`: A link to the image/video.
@@ -44,14 +46,18 @@ Similar to the various cards, except that multiple `GalleryItems` can be taken i
 - `rows`: The number of rows in the gallery. The default is set to 2.
 - `cols`: The number of columns in the gallery. The default is set to 3.
 - `flex`: How many units you want the gallery to take up on the `ContentPlane`. The default is calculated dynamically based on its content.
+- `galleryStyling`: Merges with the default styling for the gallery.
+- `galleryItemStyling`: Merges with the default styling for each `GalleryItem` component.
 ##### `GalleryItem`
 A subcomponent of the `Gallery`. This component takes the following props:
 - `type`: Specifies type of item ("image", "text", or "video")
 - `text`: Used for the `text` type.
 - `src`: Used for the `image` and `video` types.
-
+- `itemStyling`: Overrides default styling for `GalleryItem` component. (Still not 100% working)
 #### `CardContainer`
-Wraps each card (`ImageCaption`, `ImageCard`, `TextCard`, `VideoCard`, `Gallery`) to provide appropriate spacing on the `ContentPlane`. This functionality is already included by default, but for custom components it may be useful.
+Wraps each card (`ImageCaption`, `ImageCard`, `TextCard`, `VideoCard`, `Gallery`) to provide appropriate spacing on the `ContentPlane`. This functionality is already included by default, but for custom components it may be useful. It takes the following props:
+- `flex`: How many units you want the card to take up on the `ContentPlane`. The default is set to 1.
+- `cardStyling`: Merges with the default styling for the card.
 
 ### `Carousel`
 This is a holder for multiple images or textblocks in the form of dynamically-created `CarouselItems`, with buttons used to scroll through the collection. The `Carousel` component takes the following props:
@@ -60,6 +66,9 @@ This is a holder for multiple images or textblocks in the form of dynamically-cr
 - `type`: A string indicating the type of collection you want ('image' or 'text').
 - `imageCollection`: If of type 'image', the `imageCollection` prop will take an array of URLs associated with the images you want to display.
 - `maxTextLength`: The number of characters you want before the text wraps onto a new card.
+- `cardStyling`: This merges with the default styling for all cards in the carousel.
+- `buttonStyling`: This merges with the default styling for the buttons.
+- `arrowStyling`: This merges with the default styling for the arrows.
 
 ### `GazeButton`
 This button is particular to VR, wherein the user simply gazes at the button for a given period of time until it activates or 'clicks'. It takes the following props:
