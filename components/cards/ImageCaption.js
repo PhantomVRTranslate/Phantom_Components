@@ -18,6 +18,10 @@ export default class ImageCaption extends React.Component {
         
     }
 
+    //need to tailor, right now its not set but if you add borderWidth: 5 & borderColor: w/e it will detect when you are hovering over an image
+    //tried to work with tint color but its opacity variable changes the opacity of the entire fucking image. 
+
+    
     toggleCaption(){
         this.setState({displayCaption: !this.state.displayCaption});
     }
@@ -35,10 +39,8 @@ export default class ImageCaption extends React.Component {
 
         console.log(this.state, toggleHandler);
 
-        const { cardStyling } = this.props;
         return (
-            <CardContainer flex={this.props.flex || 1}
-                cardStyling={cardStyling}>
+            <CardContainer flex={this.props.flex}>
              <VrButton 
              onEnter={toggleHandler} onExit={toggleHandler} 
              style = {{
