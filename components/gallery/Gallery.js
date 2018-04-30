@@ -42,8 +42,6 @@ export default class Gallery extends React.Component {
 
     const mergedGalleryItemStyling = Object.assign({}, defaultStyling, galleryItemStyling);
 
-    console.log(mergedGalleryItemStyling);
-    
     return (
       <View
         style={mergedGalleryItemStyling}

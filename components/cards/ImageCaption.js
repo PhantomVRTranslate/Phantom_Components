@@ -12,8 +12,6 @@ export default class ImageCaption extends React.Component {
     this.state = {
       displayCaption: this.props.alwaysShow || false
     };
-
-    console.log(this.state);
   }
 
   toggleCaption() {
