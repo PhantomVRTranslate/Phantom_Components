@@ -49,8 +49,6 @@ export default class Navbar extends React.Component {
   render() {
     const { content, changePage, page, navbarStyle, linkStyle, linkBgColor, linkSelectedColor, progressColor, progressDisabled } = this.props;
 
-    const currPage = page.type.name.toLowerCase();
-
     const defaultNavbarStyle = {
       opacity: this.state.fadeIn,
       borderWidth: 0.002,
@@ -74,7 +72,7 @@ export default class Navbar extends React.Component {
         {content.map((el, idx) => (
         <NavbarItem 
           changePage={changePage} 
-          currPage={currPage}
+          currPage={page}
           link={el.link} 
           key={idx}
           linkBgColor={linkBgColor}
