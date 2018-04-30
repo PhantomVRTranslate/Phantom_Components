@@ -13,7 +13,7 @@ import NavbarItem from "./components/navbar/NavbarItem";
 import Title from "./components/Title";
 import ContentPlane from "./components/ContentPlane";
 
-export {
+module.exports = {
   GazeButton,
   CardContainer,
   ImageCaption,
