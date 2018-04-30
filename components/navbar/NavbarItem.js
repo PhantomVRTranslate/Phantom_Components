@@ -70,7 +70,14 @@ export default class NavbarItem extends React.Component {
       isTriggered
     } = this.state;
 
-    const { progressColor, progressDisabled } = this.props;
+    const { progressColor, progressDisabled, linkStyle } = this.props;
+
+    const defaultLinkStyle = {
+      fontSize,
+      color: "#FFF"
+    };
+
+    const mergedLinkStyle = Object.assign({}, defaultLinkStyle, linkStyle);
 
     return (
       <GazeButton
@@ -84,10 +91,7 @@ export default class NavbarItem extends React.Component {
         onHover={() => {}}
         onLeave={() => {}}>
         <Animated.Text
-          style={{
-            fontSize,
-            color: "#FFF"
-          }}>
+          style={mergedLinkStyle}>
           {this.props.children}
         </Animated.Text>
       </GazeButton>

@@ -65,7 +65,7 @@ export default class Navbar extends React.Component {
       justifyContent: "space-around"
     };
 
-    const mergedNavbarStyle = Object.assign({}, navbarStyle, defaultNavbarStyle);
+    const mergedNavbarStyle = Object.assign({}, defaultNavbarStyle, navbarStyle);
 
     return (
       <Animated.View

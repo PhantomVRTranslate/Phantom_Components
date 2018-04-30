@@ -17,6 +17,7 @@ Renders a fading in title for your site, along with a start button to enter your
 - `titleStyling`: Merges with default styling of title.
 - `startTextStyling`: Merges with default styling of start button.
 - `progressWidth`: This sets the width that the progress bar on the start button will extend up to before activating.
+- `progressColor`: The color of the progress bar on the start button on hover.
 
 ### `Navbar`
 Provides a bottom-positioned navigation bar that is visible throughout the entire exploration of the site. Refer to our demo site in order to use this properly. The `Navbar` component takes the following props:

@@ -78,7 +78,7 @@ export default class Title extends React.Component {
   render() {
     const { slideForward, slideUp, fadeInTitle, fadeInStart, enteredScene, buttonLoaded } = this.state;
 
-    const { title, startText, titleStyling, startTextStyling, progressWidth } = this.props;
+    const { title, startText, titleStyling, startTextStyling, progressWidth, progressColor } = this.props;
 
     const defaultTitleStyling = {
       fontSize: 0.6,
@@ -101,7 +101,7 @@ export default class Title extends React.Component {
           opacity: fadeInTitle,
           padding: 0.02,
           margin: 0.02,
-          width: 50,
+          width: 10,
           height: 0.3,
           layoutOrigin: [0.5, 0.5],
           transform: [{ translate: [0, slideUp, slideForward] }],
@@ -121,11 +121,12 @@ export default class Title extends React.Component {
         <GazeButton 
           onTrigger={this.handleTrigger.bind(this)}
           progressWidth={progressWidth}
+          progressColor={progressColor}
           >
           <Animated.View
             style={{
               opacity: fadeInStart,
-              width: 15,
+              width: 2.7,
               backgroundColor: "transparent"
             }}
           >
