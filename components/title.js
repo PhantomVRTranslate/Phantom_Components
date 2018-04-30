@@ -78,7 +78,7 @@ export default class Title extends React.Component {
   render() {
     const { slideForward, slideUp, fadeInTitle, fadeInStart, enteredScene, buttonLoaded } = this.state;
 
-    const { title, startText, titleStyling, startTextStyling } = this.props;
+    const { title, startText, titleStyling, startTextStyling, progressWidth } = this.props;
 
     const defaultTitleStyling = {
       fontSize: 0.6,
@@ -120,6 +120,7 @@ export default class Title extends React.Component {
         { !enteredScene && buttonLoaded ? 
         <GazeButton 
           onTrigger={this.handleTrigger.bind(this)}
+          progressWidth={progressWidth}
           >
           <Animated.View
             style={{

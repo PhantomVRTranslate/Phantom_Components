@@ -35,7 +35,7 @@ export default class GazeButton extends React.Component{
     onEnter(e){
         Animated.timing(
             this.state.progressWidth, {
-              toValue: .2,
+              toValue: this.props.progressWidth || .2,
               duration: 1000,
               easing: Easing.linear
             }).start();
