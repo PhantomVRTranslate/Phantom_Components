@@ -9,131 +9,48 @@ export default class Carousel extends React.Component {
     super(props);
 
     this.state = {
-      cardNumber: this.props.initialCard,
+      cardNum: this.props.initialCard || 0,
       textSlices: [],
-      currentTextSliceIndex: 0,
-      currentTextSlice: '',
-      type: this.props.type,
-      largeText: false,
       maxTextSize: this.props.maxTextSize || this.props.flex > 1 ? 200 : 120
     };
 
-    this.nextCard = this.nextCard.bind(this);
-    this.prevCard = this.prevCard.bind(this);
-    this.nextSlice = this.nextSlice.bind(this);
-    this.prevSlice = this.prevSlice.bind(this);
-    this.textSet = this.textSet.bind(this);
+    this.scroll = this.scroll.bind(this);
   }
 
   componentDidMount() {
-    this.textSet();
-    if (
-      this.props.type === "image" &&
-      this.props.imageCollection &&
-      this.props.imageCollection.length > 1
-    ) {
-      this.setState({ largeText: true });
-    }
-  }
+    if (this.props.type === "image") return;
+    let textSlices = [];
 
-  textSet(iterateCount = this.state.maxTextSize) {
-    if (typeof this.props.children === "string") {
+    // if text is given as a string or through the text prop
+    if (typeof this.props.children === "string" || this.props.text) {
       const text = this.props.children || this.props.text;
-      if (text.length < this.state.maxTextSize) {
-        this.setState({ currentTextSlice: text });
-      } else {
-        for (let i = 0; i < text.length; i += iterateCount) {
-          this.state.textSlices.push(text.slice(i, i + iterateCount));
+      for (let i = 0; i < text.length; i += this.state.maxTextSize) {
+          textSlices.push(text.slice(i, i + this.state.maxTextSize));
         }
 
-        this.setState({
-          currentTextSlice: this.state.textSlices[0],
-          largeText: true
-        });
-      }
-    } else {
+    } else { // if text is given in <Text /> components
       for (let text of this.props.children) {
         text = text.props.children;
-          for (let i = 0; i < text.length; i += iterateCount) {
-            this.state.textSlices.push(text.slice(i, i + iterateCount));
+          for (let i = 0; i < text.length; i += this.state.maxTextSize) {
+            textSlices.push(text.slice(i, i + this.state.maxTextSize));
           }
       }
-
-      this.setState({
-        currentTextSlice: this.state.textSlices[0],
-        largeText: true
-      });
     }
+
+    this.setState({ textSlices });
   }
 
-  nextSlice() {
-    const nextSliceNum = this.state.currentTextSliceIndex + 1;
-
-    if (nextSliceNum > this.state.textSlices.length - 1) {
-      this.setState({
-        currentTextSlice: this.state.textSlices[0],
-        currentTextSliceIndex: 0
-      });
-    } else {
-      this.setState({
-        currentTextSliceIndex: nextSliceNum,
-        currentTextSlice: this.state.textSlices[nextSliceNum]
-      });
-    }
-  }
-
-  prevSlice() {
-    const prevSliceNum = this.state.currentTextSliceIndex - 1;
-
-    if (prevSliceNum < 0) {
-      this.setState({
-        currentTextSlice: this.state.textSlices[
-          this.state.textSlices.length - 1
-        ],
-        currentTextSliceIndex: this.state.textSlices.length - 1
-      });
-    } else {
-      this.setState({
-        currentTextSlice: this.state.textSlices[prevSliceNum],
-        currentTextSliceIndex: prevSliceNum
-      });
-    }
-  }
-
-  nextCard() {
-    const nextCardNum = this.state.cardNumber + 1;
-
-    if (nextCardNum > this.props.imageCollection.length - 1) {
-      this.setState({
-        cardNumber: 0
-      });
-    } else {
-      this.setState({
-        cardNumber: nextCardNum
-      });
-    }
-  }
-
-  prevCard() {
-    const prevCardNum = this.state.cardNumber - 1;
-
-    if (prevCardNum < 0) {
-      this.setState({
-        cardNumber: this.props.imageCollection.length - 1
-      });
-    } else {
-      this.setState({
-        cardNumber: prevCardNum
-      });
-    }
+  scroll(type) {
+    const len = this.props.type === "image" ? 
+      this.props.imageCollection.length : this.state.textSlices.length;
+      // scary looking expression due to javascript negative modulo handling
+    const cardNum = type === 'prev' ? 
+      (((this.state.cardNum - 1) % len) + len) % len : (this.state.cardNum + 1) % len; 
+    this.setState({ cardNum });
   }
 
   render() {
-    const { imageCollection, cardStyling, buttonStyling, arrowStyling } = this.props;
-    if (imageCollection) {
-      const canNext = this.state.cardNumber < imageCollection.length;
-      const canPrev = this.state.cardNumber > 0;            
-    }
+    const { type, flex, imageCollection, cardStyling, buttonStyling, arrowStyling } = this.props;
 
     const defaultButtonStyling = {
         borderRadius: 40,
@@ -167,8 +84,32 @@ export default class Carousel extends React.Component {
 
     const mergedArrowStyling = Object.assign({}, defaultArrowStyling, arrowStyling);
 
+    const scrollButtons = (
+      <View>
+        <VrButton
+        style={leftButtonStyling}
+          onClick={() => this.scroll('prev')}
+        >
+          <Text
+            style={mergedArrowStyling}
+          >
+            {"<"}
+          </Text>
+        </VrButton>
+        <VrButton
+          onClick={() => this.scroll('next')}
+          style={rightButtonStyling}
+        >
+          <Text
+            style={mergedArrowStyling}
+          >
+            {">"}
+          </Text>
+        </VrButton>
+      </View>);
+
     return (
-      <CardContainer flex={this.props.flex || 1}
+      <CardContainer flex={flex || 1}
       cardStyling={cardStyling} >
         <View
           style={{
@@ -177,41 +118,13 @@ export default class Carousel extends React.Component {
           }}
         >
           <CarouselItem
-            card={imageCollection ? imageCollection[this.state.cardNumber] : null}
-            type={this.props.type}
-            flex={this.props.flex}
+            card={imageCollection ? imageCollection[this.state.cardNum] : null}
+            type={type}
+            flex={flex}
           >
-            {this.state.currentTextSlice}
+            {type === "text" ? this.state.textSlices[this.state.cardNum] : ''}
           </CarouselItem>
-
-          {this.state.largeText && (
-            <View>
-              <VrButton
-              style={leftButtonStyling}
-                onClick={
-                  this.props.type === "image" ? this.prevCard : this.prevSlice
-                }
-              >
-                <Text
-                  style={mergedArrowStyling}
-                >
-                  {"<"}
-                </Text>
-              </VrButton>
-              <VrButton
-                onClick={
-                  this.props.type === "image" ? this.nextCard : this.nextSlice
-                }
-                style={rightButtonStyling}
-              >
-                <Text
-                  style={mergedArrowStyling}
-                >
-                  {">"}
-                </Text>
-              </VrButton>
-            </View>
-          )}
+            {scrollButtons}
         </View>
       </CardContainer>
     );

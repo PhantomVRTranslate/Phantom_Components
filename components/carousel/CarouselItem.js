@@ -25,7 +25,6 @@ class CarouselItem extends React.Component {
   }
 
   render() {
-
     return (
       <View>
         { this.props.type === "image" ?
