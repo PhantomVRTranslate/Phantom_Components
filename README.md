@@ -93,6 +93,15 @@ This is a holder for multiple images or textblocks in the form of dynamically-cr
 - `buttonStyling`: This merges with the default styling for the buttons.
 - `arrowStyling`: This merges with the default styling for the arrows.
 
+### `CarouselPage`
+This is an entire page holder for a scrolling image gallery, composed of `CarouselPageItem`s. The `CarouselPage` component takes the following props:
+- `width`: The width you want every image to be. The default value is 600.
+- `height`: The height you want every image to be. The default value is 600.
+- `images`: An array of strings corresponding to the URLs of the images you want to display.
+- `initialImage`: The number in the sequence of images you want to designate as the first image.
+- `buttonStyling`: This merges with the default styling for the buttons.
+- `arrowStyling`: This merges with the default styling for the arrows.
+
 ### `GazeButton`
 This button is particular to VR, wherein the user simply gazes at the button for a given period of time until it activates or 'clicks'. It takes the following props:
 - `timeout`: This corresponds to the amount of time (in milliseconds) that the user must gaze at the button before it activates. The default is set to 1000.
