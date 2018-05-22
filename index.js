@@ -6,6 +6,8 @@ import TextCard from "./components/cards/TextCard";
 import VideoCard from "./components/cards/VideoCard";
 import Carousel from "./components/carousel/Carousel";
 import CarouselItem from "./components/carousel/CarouselItem";
+import CarouselPage from "./components/carousel/CarouselPage";
+import CarouselPageItem from "./components/carousel/CarouselPageItem";
 import Gallery from "./components/gallery/Gallery";
 import GalleryItem from "./components/gallery/GalleryItem";
 import Navbar from "./components/navbar/Navbar";
@@ -22,6 +24,8 @@ module.exports = {
   VideoCard,
   Carousel,
   CarouselItem,
+  CarouselPage,
+  CarouselPageItem,
   Gallery,
   GalleryItem,
   Navbar,

@@ -1,6 +1,6 @@
 {
   "name": "phantom_components",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "custom components for vr pages",
   "main": "index.js",
   "scripts": {
